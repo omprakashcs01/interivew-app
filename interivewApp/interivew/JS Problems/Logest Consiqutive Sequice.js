@@ -21,26 +21,25 @@ function longestConsecutive(arr) {
 
 // gpt code 
 function longestConsecutive(arr) {
-    if (arr.length == 0) return null;
+  if (arr.length === 0) {
+    return 0;
+  }
 
-    let count = 1;
-    let max = 1;
-    let sorted = arr.sort((a, b) => a - b);
+  let count = 1;
+  let max = 1;
+  arr.sort((a, b) => a - b);
 
-    for (let i = 1; i < sorted.length; i++) {
-        if (sorted[i] - sorted[i - 1] == 1) {
-            count++;
-            max = Math.max(max, count);
-        } else if (sorted[i] - sorted[i - 1] != 0) { // Change here
-            count = 1;
-        }
+  for (let i = 1; i < arr.length; i++) {
+    if (arr[i] - arr[i - 1] === 1) {
+      count++;
+      max = Math.max(max, count);
+    } else if (arr[i] !== arr[i - 1]) {
+      count = 1;
     }
-
-    return max;
+  }
+  return max;
 }
-
-const arr = [1, 2, 0, 1];
-console.log(longestConsecutive(arr));  // Output: 3
+  // Output: 3
 ///////////
 
 

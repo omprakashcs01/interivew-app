@@ -15,12 +15,24 @@
 //14 How to find common elements from two arrays in Java (Hindi)
 //15 Longest Consecutive Sequence 
 
+//Object Problems
 // GroupBy 
 // prototype function
 // input = [{id: 1, number: 1}, {id: 1, number: 2}, {id: 2, number: 1}]
 // Output = [{id: 1, number: [1, 2]}, {id: 2, number: [1]}]
 // Bubbling, Capturing, and Deligation
 // 
+//Given an array of objects [{banana: 5, apples:5}, {pear: 6}, {apples: 5}, {banana:2}],
+// return an object with the sum of all the fruits
+
+
+
+// give task to design autocomplete
+
+///fontend leedocde
+//https://leetcode.com/discuss/interview-question/742791/front-end-interview-questions
+//https://leetcode.com/discuss/interview-experience/2072679/livspace-interview-questions-front-end-sde-1-my-journery-from-76lpa-to-27-lpa
+
 
 
 //string
