@@ -1,3 +1,56 @@
+//easy chatgpt
+
+
+
+
+function read(obj, path) {
+  return path.split('.').reduce((acc, key) => (acc && acc[key] !== undefined ? acc[key] : undefined), obj);
+}
+
+const obj = {
+  A: {
+    B: {
+      C: {
+        D: {
+          E: 2,
+        },
+      },
+    },
+  },
+};
+
+console.log(read(obj, "A.B.C.D.E")); // Output: 2
+console.log(read(obj, "A.B.C.F.G")); // Output: undefined/
+
+
+///////// phind
+
+function deepGet(obj, key){
+  key.reduce((acc,item)=>acc?.[item]?? null,obj)
+}
+
+
+const obj = {
+  A: {
+    B: {
+      C: {
+        D: {
+          E: 2,
+        },
+      },
+    },
+  },
+};
+
+
+
+
+
+
+
+
+
+
 function read(obj, path) {
   // Split the path into keys
   const keys = path.split(".");
