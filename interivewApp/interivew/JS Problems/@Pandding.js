@@ -1,3 +1,11 @@
+//react  native interview
+//1. https://bhavnaharitsa.medium.com/react-native-interview-guide-c25c733cb4b3
+//2.https://www.scholarhat.com/tutorial/react/react-hooks-interview-questions-and-answers
+//3.https://github.com/Devinterview-io/react-native-interview-questions
+//4.https://github.com/samsoul16/react-native-interview-questions
+
+
+
 //panding
 //1. Contains Duplicate 
 //2. Valid Anagram 
@@ -93,3 +101,52 @@ const map = {
 
 
 // https://docs.google.com/spreadsheets/d/1A2PaQKcdwO_lwxz9bAnxXnIQayCouZP6d-ENrBz_NXc/edit#gid=0
+
+//////////////////////////////
+
+// Abhishek Verma
+// 16:14
+// <Text>Hello</Text>
+// JSX => Screen
+// Abhishek Verma
+// 16:24
+// useFocusEffect
+// useLayoutEffect
+// flatlist vs scrollview
+// Abhishek Verma
+// 16:27
+// What are pods ?
+// Abhishek Verma
+// 16:31
+// turbo module
+// virtual dom
+// Abhishek Verma
+// 16:38
+// TRAINEE
+// NIELIT AURANGABAD (PURSUING) | Android Development
+// Learn use of Broadcast Receiver , Adapters and Internet and Manage
+// Application with Database (firebase)
+
+
+// Given an array of objects, for example, a = [{A: 0}, {B: 0}, {C: 0}], implement a counter function counter that returns the next iterable item with an incremented value each time it is called. The function should iterate through the objects in a round-robin fashion, incrementing the value of each object sequentially.
+
+// console.log(counter()); // { A: 1 }
+// console.log(counter()); // { B: 1 }
+// console.log(counter()); // { C: 1 }
+// console.log(counter()); // { A: 2 }
+// console.log(counter()); // { B: 2 }
+
+// Q. Given any array of objects, e.g: a = [{A: 0}, {B: 0}, {C: 0}]. Implement a counter function, that returns next iterable item with incremented value. Example
+
+//                                        • console.log(counter()) // A: 1
+
+//                                        • console.log(counter()) // B: 1
+
+//                                        • console.log(counter()) // C: 1
+
+//                                        • console.log(counter()) // A: 2
+
+//                                        Your answers are being recorded in the form of Video [Your Screen & Camera] and Audio [Your Mic].
+
+//                                        Please speak and share details over your screen to answer.
+

@@ -1,3 +1,43 @@
+///
+function rob(nums) {
+  let n = nums.length;
+
+  if (n === 1) return nums[0];
+
+  let t = new Array(n + 1).fill(0);
+
+  // no house: i = 0
+  t[0] = 0;
+
+  // 1 house: i = 1
+  t[1] = nums[0];
+
+  for (let i = 2; i <= n; i++) {
+    let steal = nums[i - 1] + t[i - 2];
+    let skip = t[i - 1];
+    t[i] = Math.max(steal, skip);
+  }
+
+  return t[n];
+}
+
+// Example usage:
+const nums = [1, 2, 3, 1];
+console.log(rob(nums));  // Output will depend on the input array
+
+/////////////
+
+
+
+
+
+
+
+
+
+
+
+
 function rob(arr) {
   if (arr.length === 0) return 0;
   if (arr.length === 1) return arr[0];
@@ -5,14 +45,13 @@ function rob(arr) {
   let dpPrev1 = arr[0];
   let dpPrev2 = Math.max(arr[0], arr[1]);
 
-  for (let i = 2; i < arr.length; i++) {
+  for  (let i = 2; i <arr.length; i++) {
     let current = Math.max(arr[i] + dpPrev1, dpPrev2);
-    dpPrev1 = dpPrev2;
     dpPrev2 = current;
   }
   return dpPrev2;
 }
-
+/////////////////////////////////////
 function rob(arr) {
   if (arr.length === 0) return 0;
   if (arr.length === 1) return arr[0];
