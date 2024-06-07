@@ -1,7 +1,49 @@
 //easy chatgpt
 
+const obj = {
+  A: {
+    B: {
+      C: {
+        D: {
+          E: 2,
+        },
+      },
+    },
+  },
+};
+
+function read(obj, path) {
+  const keys = path.split('.');
+  let current = obj;
+
+  for (let key of keys) {
+    if (current[key] === undefined) {
+      return undefined;
+    }
+    current = current[key];
+  }
+
+  return current;
+}
+
+console.log(read(obj, "A.B.C.D.E")); // Output: 2
+console.log(read(obj, "A.B.C.F.G")); // Output: undefined
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+/////
 
 function read(obj, path) {
   return path.split('.').reduce((acc, key) => (acc && acc[key] !== undefined ? acc[key] : undefined), obj);

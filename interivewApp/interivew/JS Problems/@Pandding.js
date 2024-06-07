@@ -135,18 +135,14 @@ const map = {
 // console.log(counter()); // { C: 1 }
 // console.log(counter()); // { A: 2 }
 // console.log(counter()); // { B: 2 }
+//
 
-// Q. Given any array of objects, e.g: a = [{A: 0}, {B: 0}, {C: 0}]. Implement a counter function, that returns next iterable item with incremented value. Example
+//question round robin
+// Given any array of objects, e.g. a = [{A: 0}, {B: 0}, {C: 0}]. Implement a counter 
 
-//                                        • console.log(counter()) // A: 1
-
-//                                        • console.log(counter()) // B: 1
-
-//                                        • console.log(counter()) // C: 1
-
-//                                        • console.log(counter()) // A: 2
-
-//                                        Your answers are being recorded in the form of Video [Your Screen & Camera] and Audio [Your Mic].
-
-//                                        Please speak and share details over your screen to answer.
-
+// function that returns the next iterable item with an incremented value.
+//example
+//console.log(counter()) // {A: 1}
+// console.log(counter()) // {B: 1}
+// console.log(counter()) // {C: 1}
+// console.log(counter()) // {A: 2}
