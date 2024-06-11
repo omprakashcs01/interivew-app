@@ -8,7 +8,6 @@ const Home = () => {
   const [data, setData] = useState([]);
   const [flitteredData, setFilteredData] = useState([]);
 
-  console.log(data);
   const fetchApi = async () => {
     const response = await axios.get('https://fakestoreapi.com/products');
 
@@ -21,23 +20,6 @@ const Home = () => {
     filterData(text);
   };
 
-  const filterData = text => {
-    const trimmedSearchTerm = text.trim().toLowerCase();
-    if (trimmedSearchTerm === '') {
-      setFilteredData(data);
-    } else {
-      const filtered = data.filter(item => {
-        const itemId = item.id.toString().toLowerCase();
-        const itemTitle = item.title.toLowerCase();
-        return (
-          itemId.includes(trimmedSearchTerm) ||
-          itemTitle.includes(trimmedSearchTerm)
-        );
-      });
-      setFilteredData(filtered);
-    }
-  };
-
   useEffect(() => {
     fetchApi();
   }, []);
@@ -46,6 +28,29 @@ const Home = () => {
   //   useEffect(() => {
   //     filterSearch();
   //   }, [searchTerm, data]);
+
+  const filterData = text => {
+    // Convert search term and item titles to lowercase once
+    const searchTermLower = text.trim().toLowerCase();
+
+    if (searchTermLower === '') {
+      setFilteredData(data); // No search term, show all items
+    } else {
+      // Filter data using optimized string comparison
+      const filteredData = data.filter(item => {
+        const itemId = item.id.toString().toLowerCase(); // Convert item ID once
+        const itemTitle = item.title.toLowerCase(); // Convert title once
+
+        // Use includes() for simple substring matches
+        return (
+          itemId.includes(searchTermLower) ||
+          itemTitle.includes(searchTermLower)
+        );
+      });
+
+      setFilteredData(filteredData);
+    }
+  };
 
   const fakeData = [
     {
