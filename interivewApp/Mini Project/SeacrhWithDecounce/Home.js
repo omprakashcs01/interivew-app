@@ -6,11 +6,10 @@ import axios from 'axios';
 const Home = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [data, setData] = useState([]);
-  const [flitteredData, setFilteredData] = useState([]);
+  const [filteredData, setFilteredData] = useState([]);
 
   const fetchApi = async () => {
     const response = await axios.get('https://fakestoreapi.com/products');
-
     setData(response.data);
     setFilteredData(response.data);
   };
@@ -18,6 +17,7 @@ const Home = () => {
   const handleSearch = text => {
     setSearchTerm(text);
     filterData(text);
+    addDebounce(text);
   };
 
   useEffect(() => {
@@ -30,27 +30,37 @@ const Home = () => {
   //   }, [searchTerm, data]);
 
   const filterData = text => {
-    // Convert search term and item titles to lowercase once
-    const searchTermLower = text.trim().toLowerCase();
-
-    if (searchTermLower === '') {
-      setFilteredData(data); // No search term, show all items
+    const searchTermTrim = text.trim().toLowerCase();
+    if (searchTermTrim === '') {
+      setFilteredData(data);
     } else {
-      // Filter data using optimized string comparison
-      const filteredData = data.filter(item => {
-        const itemId = item.id.toString().toLowerCase(); // Convert item ID once
-        const itemTitle = item.title.toLowerCase(); // Convert title once
-
-        // Use includes() for simple substring matches
+      const filterSearchItems = data.filter(item => {
+        const searchByName = item.title.toLowerCase();
+        const searchByID = item.id.toString().toLowerCase();
         return (
-          itemId.includes(searchTermLower) ||
-          itemTitle.includes(searchTermLower)
+          searchByName.includes(searchTermTrim) ||
+          searchByID.includes(searchTermTrim)
         );
       });
-
-      setFilteredData(filteredData);
+      setFilteredData(filterSearchItems);
     }
   };
+
+  const debounce = (fn, delay) => {
+    let timer;
+
+    return function (...args) {
+      if (timer) {
+        clearTimeout(timer);
+      }
+      timer = setTimeout(() => {
+        fn.apply(this, args);
+      }, delay);
+      return timer;
+    };
+  };
+
+  const addDebounce = debounce(filterData, 1);
 
   const fakeData = [
     {
@@ -72,7 +82,7 @@ const Home = () => {
         <CustomSearchBar value={searchTerm} onChangeText={handleSearch} />
       </View>
       <FlatList
-        data={flitteredData}
+        data={filteredData}
         renderItem={({item}) => {
           return (
             <View style={{flex: 1}}>
