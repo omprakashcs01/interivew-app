@@ -1,36 +1,82 @@
-// function twoArraySum (arr1, m, arr2, n){
-//     let result = [arr1.length+ arr2.length]
+function twoArraySum(arr1, m, arr2, n) {
+  let result = [arr1.length + arr2.length];
 
-//     let i =0
-//     let j= 0
-//     let k= 0
+  let i = 0;
+  let j = 0;
+  let k = 0;
 
-//     while(i<arr1.length&&j<arr2.length){
-//         if(arr1[i]< arr2[j]){
-//           result[k] = arr1[i]
-//           i++;
-//           k++
-//         } else {
-//             result[k] = arr2[j]
-//             j++
-//             k++
-//         }
-//     }
+  while (i < arr1.length && j < arr2.length) {
+    if (arr1[i] < arr2[j]) {
+      result[k] = arr1[i];
+      i++;
+      k++;
+    } else {
+      result[k] = arr2[j];
+      j++;
+      k++;
+    }
+  }
 
-//     while(i<arr1.length) {
-//         result[k] = arr1[i]
-//         i++
-//         k++
-//     }
+  while (i < arr1.length) {
+    result[k] = arr1[i];
+    i++;
+    k++;
+  }
 
-//     while(i<arr2.length) {
-//         result[k] = arr2[j]
-//         j++
-//         k++
-//     }
+  while (i < arr2.length) {
+    result[k] = arr2[j];
+    j++;
+    k++;
+  }
 
-// return result
-// }
+  return result;
+}
+
+/////////////////////////////////////////////////////
+function merge(nums1, m, nums2, n) {
+  // i points to the current index of nums1
+  let i = m - 1;
+
+  // j points to the current index of nums2
+  let j = n - 1;
+
+  // k points to the last index of the merged array
+  let k = m + n - 1;
+
+  // While there are elements to merge
+  while (i >= 0 && j >= 0) {
+    // If element in nums1 is greater, copy it to the merged array
+    if (nums1[i] > nums2[j]) {
+      nums1[k] = nums1[i];
+      i--;
+    } else {
+      // If element in nums2 is greater, copy it to the merged array
+      nums1[k] = nums2[j];
+      j--;
+    }
+    k--;
+  }
+
+  // Copy remaining elements of nums2 if there are any
+  while (j >= 0) {
+    nums1[k] = nums2[j];
+    j--;
+    k--;
+  }
+}
+//////////////////////////////////////////////////////////////////
+
+
+
+
+
+
+
+
+
+
+
+
 
 // function merge(arr1, arr2, n, m) {
 
@@ -110,7 +156,7 @@ function twoArraySorted(arr1, a, arr2, b) {
   while (j < m) {
     result[k] = arr2[j];
     j++;
-    k++; 
+    k++;
   }
 
   return result;

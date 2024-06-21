@@ -43,6 +43,7 @@ const PracticePage = () => {
     setSeconds(0);
     setMinutes(0);
     timer.current = null;
+    startTimer();
   };
 
   return (

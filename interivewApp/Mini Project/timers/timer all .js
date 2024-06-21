@@ -44,8 +44,7 @@ const PracticePage = () => {
       clearInterval(timer.current);
       timer.current = null;
     }
-    setSeconds(0);
-    setMinutes(0);
+     
     setIsPaused(false);
   };
 

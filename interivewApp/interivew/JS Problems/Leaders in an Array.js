@@ -51,3 +51,44 @@ function printLeaders(arr, n) {
     console.log(ans[i]);
   }
   
+////////brute froce
+function findLeadersBruteForce(arr) {
+  const leaders = [];
+
+  for (let i = 0; i < arr.length; i++) {
+    let isLeader = true;
+    for (let j = i + 1; j < arr.length; j++) {
+      if (arr[i] < arr[j]) {
+        isLeader = false;
+        break;
+      }
+    }
+    if (isLeader) {
+      leaders.push(arr[i]);
+    }
+  }
+  return leaders;
+}
+
+// Example usage
+const arr = [16, 17, 4, 3, 5, 2];
+const result = findLeadersBruteForce(arr);
+console.log(result); // Output: [17, 5, 2]
+//
+function findLeaders(arr) {
+  const leaders = [];
+  let currentLeader = -Infinity;
+
+  for (let i = arr.length - 1; i >= 0; i--) {
+    if (arr[i] > currentLeader) {
+      leaders.push(arr[i]);
+      currentLeader = arr[i];
+    }
+  }
+  return leaders.reverse();
+}
+
+// Example usage
+const arr = [16, 17, 4, 3, 5, 2];
+const result = findLeaders(arr);
+console.log(result); // Output: [17, 5, 2]
