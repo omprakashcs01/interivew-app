@@ -10,3 +10,6 @@ function longestCommonPrefix(str) {
   }
   return str[0];
 }
+//https://www.youtube.com/watch?v=0SF6RLMYBcE
+
+//https://www.youtube.com/watch?v=0SF6RLMYBcE
