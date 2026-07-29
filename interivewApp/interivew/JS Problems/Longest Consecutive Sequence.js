@@ -1,4 +1,4 @@
-function longestConsecutive(arr) {
+   function longestConsecutive(arr) {
   if (arr.length == 0) return 0;
 
   let count = 1;
@@ -43,7 +43,29 @@ function longestConsecutive(arr) {
 ///////////
 
 
+///new 
+function longestConsecutive(arr) {
+  if (arr.length === 0) return 0;  // Handle the edge case where the array is empty.
 
+  let count = 1;
+  let max = 1;
+
+  arr = arr.sort((a, b) => a - b);
+
+  for (let i = 1; i < arr.length; i++) {
+      if (arr[i] - arr[i - 1] === 1) {
+          // If current element is consecutive to the previous, increment count.
+          count++;
+      } else if (arr[i] !== arr[i - 1]) {
+          // If not consecutive and not a duplicate, reset count.
+          count = 1;
+      }
+
+      // Update the max value when a longer sequence is found.
+      max = Math.max(max, count);
+  }
+  return max;
+}
 
 
 

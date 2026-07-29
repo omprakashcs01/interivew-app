@@ -23,7 +23,7 @@ function sortStudents(arr) {
     let names = arr.map(student => student[0]);
     
     // Sort the names in alphabetical order
-    names.sort();
+    n ames.sort();
     
     return names;
 }

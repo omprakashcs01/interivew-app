@@ -21,21 +21,21 @@ export default function TrafficLight() {
     let timer;
     switch (active) {
       case Light.red: {
-        setTimeout(() => {
+        timer = setTimeout(() => {
           setActive(Light.yellow);
         }, 4000);
         break;
       }
 
       case Light.yellow: {
-        setTimeout(() => {
+        timer = setTimeout(() => {
           setActive(Light.green);
         }, 3000);
         break;
       }
 
       case Light.green: {
-        setTimeout(() => {
+        timer = setTimeout(() => {
           setActive(Light.red);
         }, 5000);
         break;

@@ -10,7 +10,7 @@ function longestSubstring(str){
 
 
   while (right < str.length) {
-    let letter = s[right] 
+    let letter = str[right] 
 
     if(!set.has(letter)){
           set.add(letter)

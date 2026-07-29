@@ -5,7 +5,7 @@ const person1 = {
     return this.name + ' ' + this.lastName + ' ' + home;
   },
 };
-
++
 const person2 = {
   name: 'deep',
   lastName: 'kumar',
@@ -22,3 +22,4 @@ console.log(person1.fullName.apply(person2, ['delhi']));
 const result = person1.fullName.bind(person2, 'delhi');
 
 console.log(result());
+process

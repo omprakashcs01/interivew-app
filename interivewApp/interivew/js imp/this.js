@@ -10,4 +10,4 @@ const obj = {
 
 obj.findName()
 
-//this
+

@@ -1,3 +1,4 @@
+
 function LeadersArray(arr) {
     let ans = [];
     let maxi = -Infinity; // Initialize to negative infinity for comparison

@@ -1,4 +1,4 @@
-let input = [{id: 1, number: 1}, {id: 1, number: 2}, {id: 2, number: 1}];
+let input = [{id: 1, number: 1}, {id: 1, number: 2}, {id : 2, number: 1}];
 //// input = [{id: 1, number: 1}, {id: 1, number: 2}, {id: 2, number: 1}]
 // Output = [{id: 1, number: [1, 2]}, {id: 2, number: [1]}]
 
@@ -28,6 +28,7 @@ Array.prototype.groupBy = function(fn) {
     }, {});
 };
 
+
 // Example usage:
 const array1 = [
     {"id":"1"},
@@ -41,3 +42,14 @@ console.log(array1.groupBy(fn1));
 // Output: { "1": [{"id": "1"}, {"id": "1"}], "2": [{"id": "2"}] }
 
 
+///////////////
+function groupBy(array, fn) {
+    return array.reduce((acc, item) => {
+      const key = fn(item);
+      if (!acc[key]) {
+        acc[key] = [];
+      }
+      acc[key].push(item);
+      return acc;
+    }, {});
+  }

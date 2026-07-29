@@ -8,8 +8,30 @@ function longestCommonPrefix(str) {
       }
     }
   }
-  return str[0];
+  return str[0]; 
 }
 //https://www.youtube.com/watch?v=0SF6RLMYBcE
 
 //https://www.youtube.com/watch?v=0SF6RLMYBcE
+
+//
+
+function longestCommonPrefix(str) {
+  str = str.sort();
+
+  let result = '';
+
+  let first = str[0].split('');
+  let last = str[str.length - 1].split('');
+
+  for (let i = 0; i < str.length; i++) {
+    if (last[i] == first[i]) {
+      result += last[i];
+    } else {
+      break;
+    }
+  }
+  return result;
+}
+
+//https://www.youtube.com/watch?v=gIseUl0sO58

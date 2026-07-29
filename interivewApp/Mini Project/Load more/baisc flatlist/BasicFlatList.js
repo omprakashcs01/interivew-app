@@ -1,90 +1,67 @@
-import {
-  ActivityIndicator,
-  FlatList,
-  Image,
-  StyleSheet,
-  Text,
-  View,
-} from 'react-native';
-import React, {useEffect, useState} from 'react';
+import React, { useState } from 'react';
+import { View, Text, Button, StyleSheet } from 'react-native';
 
-import {fakeData} from '../data/data';
-import SearchUI from '../../../src/Important  Component/Search/SearchUI';
-import axios from 'axios';
+export default function App() {
+  // Initialize minutes and seconds separately
+  const [minutes, setMinutes] = useState(0);
+  const [seconds, setSeconds] = useState(0);
+  const [timeInterval, setTimeInterval] = useState(null);
 
-const BasicFlatList = () => {
-  const [data, setData] = useState([]);
-  const [loading, setLoading] = useState(false);
-  const [next, setNext] = useState('https://rickandmortyapi.com/api/character');
-
-  const fetchAPI = async () => {
-    setLoading(true);
-    const response = await axios.get(next);
-    setData(response.data.results);
-    setNext(response.data.info.next);
-    setLoading(false);
+  const startTimer = () => {
+    setTimeInterval(
+      setInterval(() => {
+        // Use functional update form for setting seconds
+        setSeconds(prevSeconds => (prevSeconds + 1) % 60); // Reset seconds after 59
+        // Check if seconds reach 0, increment minutes
+        setMinutes(prevMinutes => {
+          if ((prevMinutes * 60 + prevSeconds + 1) % 60 === 0) {
+            return prevMinutes + 1;
+          } else {
+            return prevMinutes;
+          }
+        });
+      }, 1000),
+    );
   };
 
-  useEffect(() => {
-    fetchAPI();
-  }, []);
-
-  if (loading && data.length === 0) {
-    return <ActivityIndicator />;
-  }
-
-  const loadMore = async () => {
-    if (!next) return; // If there's no next URL, don't attempt to load more
-    setLoading(true);
-    const response = await axios.get(next);
-    setData(prevData => [...prevData, ...response.data.results]);
-    setNext(response.data.info.next);
-    setLoading(false);
+  const pauseTimer = () => {
+    clearInterval(timeInterval);
   };
+
+  const resetTimer = () => {
+    setMinutes(0);
+    setSeconds(0);
+    clearInterval(timeInterval);
+  };
+
+  // Format minutes and seconds for display
+  const formattedTime = `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
 
   return (
-    <View style={{flex: 1}}>
-      <SearchUI />
-      <FlatList
-        data={data}
-        renderItem={({item}) => {
-          return (
-            <View style={{flex: 1}}>
-              <View style={{alignItems: 'center'}}>
-                <Image
-                  style={{aspectRatio: 1, width: '100%'}}
-                  source={{uri: item.image}}
-                />
-                <Text style={{fontWeight: '800', fontSize: 20}}>
-                  {item.name}
-                </Text>
-              </View>
-            </View>
-          );
-        }}
-        contentContainerStyle={{gap: 10}}
-        ListFooterComponent={() => {
-          return (
-            <View>
-              {loading ? (
-                <ActivityIndicator />
-              ) : (
-                <Text
-                  style={{fontSize: 20, alignItems: 'center'}}
-                  onPress={loadMore}>
-                  Load more
-                </Text>
-              )}
-              <Text>{next}</Text>
-            </View>
-          );
-        }}
-        onEndReached={loadMore}
-      />
+    <View style={styles.container}>
+      <Text style={styles.timerText}>Timer: {formattedTime}</Text>
+      <View style={styles.buttonWrapper}>
+        <Button title="Start" onPress={startTimer} />
+        <Button title="Pause" onPress={pauseTimer} />
+        <Button title="Reset" onPress={resetTimer} />
+      </View>
     </View>
   );
-};
+}
 
-export default BasicFlatList;
-
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  timerText: {
+    fontSize: 24,
+    marginBottom: 20,
+  },
+  buttonWrapper: {
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+    width: '80%',
+  },
+});

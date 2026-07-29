@@ -44,11 +44,12 @@ function minPlatforms(arrival, departure) {
             platforms++;
             i++;
         } else {
-            platforms--;
+            platforms--; 
             j++;
         }
         maxPlatforms = Math.max(maxPlatforms, platforms);
     }
+   
     return maxPlatforms;
 }
 

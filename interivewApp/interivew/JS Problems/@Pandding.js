@@ -146,3 +146,6 @@ const map = {
 // console.log(counter()) // {B: 1}
 // console.log(counter()) // {C: 1}
 // console.log(counter()) // {A: 2}
+
+
+//code WALA https://docs.google.com/document/d/1mYhmlU4LCRs_XA5fsNQebmKSdM37Fwt-rCcGUhMaa6g/edit

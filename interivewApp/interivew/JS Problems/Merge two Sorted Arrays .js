@@ -1,4 +1,4 @@
-function twoArraySum(arr1, m, arr2, n) {
+ function twoArraySum(arr1, m, arr2, n) {
   let result = [arr1.length + arr2.length];
 
   let i = 0;
@@ -65,18 +65,6 @@ function merge(nums1, m, nums2, n) {
   }
 }
 //////////////////////////////////////////////////////////////////
-
-
-
-
-
-
-
-
-
-
-
-
 
 // function merge(arr1, arr2, n, m) {
 
@@ -203,6 +191,6 @@ function twoSortedArray(arr1, a, arr2, b) {
   return result;
 }
 
-(nums1 = [1, 2, 3, 0, 0, 0]), (m = 3), (nums2 = [2, 5, 6]), (n = 3);
+(arr1 = [1, 2, 3, 0, 0, 0]), (m = 3), (arr2 = [2, 5, 6]), (n = 3);
 
-console.log(twoSortedArray(nums1, m, nums2, n));
+console.log(twoSortedArray(arr1, m, arr2, n));

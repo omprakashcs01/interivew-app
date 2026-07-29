@@ -27,4 +27,14 @@ function add(a) {
   };
 }
 
-
+function curry(fn) {
+  return function curriedFunc(...args) {
+    if (args.length >= fn.length) {
+      return fn(...args);
+    } else {
+      return function (...next) {
+        return curriedFunc(...args, ...next);
+      };
+    }
+  };
+}

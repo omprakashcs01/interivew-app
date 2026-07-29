@@ -344,7 +344,7 @@ const OTPScreen = () => {
             setF1(text);
             if (text.length >= 1) et2.current.focus();
           }}
-          value={f1}
+          ref={f1}
         />
         <TextInput
           style={{
@@ -363,7 +363,7 @@ const OTPScreen = () => {
             if (text.length >= 1) et3.current.focus();
             else if (text.length < 1) et1.current.focus();
           }}
-          value={f2}
+          ref={f2}
         />
         <TextInput
           style={{
@@ -382,7 +382,7 @@ const OTPScreen = () => {
             if (text.length >= 1) et4.current.focus();
             else if (text.length < 1) et2.current.focus();
           }}
-          value={f3}
+          ref={f3}
         />
         <TextInput
           style={{
@@ -401,7 +401,7 @@ const OTPScreen = () => {
             if (text.length >= 1) et4.current.focus();
             else if (text.length < 1) et3.current.focus();
           }}
-          value={f4}
+          ref={f4}
         />
       </View>
       <View style={{flexDirection: 'row', margin: 20}}>

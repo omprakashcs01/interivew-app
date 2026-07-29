@@ -16,6 +16,10 @@ const PracticePage = () => {
 
   const formatNumber = number => (number < 10 ? `0${number}` : number);
 
+
+  const formatNumberOK = num=> (num < 10 ? `0${num}`: num)
+
+
   const startTimer = () => {
     if (timer.current) return; // Prevent multiple intervals
     timer.current = setInterval(() => {
@@ -70,3 +74,68 @@ const PracticePage = () => {
 export default PracticePage;
 
 const styles = StyleSheet.create({});
+/////// pause restrt 
+
+
+
+
+
+
+import { Text, SafeAreaView, StyleSheet, View, Button } from 'react-native';
+import React, { useState, useRef } from "react";
+
+export default function Basictimer() {
+  const [second, setSecond] = useState(0);
+  const [minute, setMinute] = useState(0);
+  const [isRunning, setIsRunning] = useState(false);
+
+  let timer = useRef(null);
+
+  function startTimer() {
+    if (timer.current) {
+      clearInterval(timer.current);
+    }
+    timer.current = setInterval(() => {
+      setSecond((prevSec) => {
+        if (prevSec === 59) {
+          setMinute((prevMin) => prevMin + 1);
+          return 0;
+        }
+        return prevSec + 1;
+      });
+    }, 1000);
+    setIsRunning(true);
+  }
+
+  function pauseTimer() {
+    if (timer.current) {
+      clearInterval(timer.current);
+      timer.current = null;
+      setIsRunning(false);
+    } else {
+      startTimer();
+    }
+  }
+
+  function stopTimer() {
+    if (timer.current) {
+      clearInterval(timer.current);
+    }
+    timer.current = null;
+    setSecond(0);
+    setMinute(0);
+    setIsRunning(false);
+  }
+
+  return (
+    <View>
+      <Text> Timer {minute}:{second < 10 ? `0${second}` : second}</Text>
+      <View style={{ flexDirection: 'row' }}>
+        <Button title="Start" onPress={startTimer} disabled={isRunning} />
+        <Button title={isRunning ? "Pause" : "Resume"} onPress={pauseTimer} />
+        <Button title="Stop" onPress={stopTimer} />
+      </View>
+    </View>
+  );
+}
+

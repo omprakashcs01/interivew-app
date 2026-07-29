@@ -26,7 +26,7 @@ function findMin(nums) {
 
         // If mid element is greater than the rightmost element,
         // the minimum must be in the right part
-        if (nums[mid] > nums[right]) {
+    if (nums[mid] > nums[right]) {
             left = mid + 1;
         } else {
             // Otherwise, the minimum is in the left part including mid

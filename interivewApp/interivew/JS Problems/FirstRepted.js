@@ -1,33 +1,45 @@
-function findFirstRepatingElement(arr){
+function findFirstRepeatingElement(arr) {
+  let seen = {};
 
-    let seen = {}
-
-    for (let i = 0; i < arr.length; i++){
-        if (seen[arr[i]] !== undefined) {
-            return arr[i];
-        }
-        return seen[arr[i]] = i
+  for (let i = 0; i < arr.length; i++) {
+    if (seen[arr[i]] !== undefined) {
+      return arr[i]; // Return the first repeating element
     }
+    seen[arr[i]] = i; // Mark the element as seen by storing its index
+  }
 
-    return null
+  return null; // If no repeating element is found
+}
+///
+
+function findFirstRepatingElement(arr) {
+  let seen = {};
+
+  for (let i = 0; i < arr.length; i++) {
+    if (seen[arr[i]] !== undefined) {
+      return arr[i];
+    }
+    return (seen[arr[i]] = i);
+  }
+
+  return null;
 }
 
-let arr = [10,25,78, 2,2]
+let arr = [10, 25, 78, 2, 2];
 
 function findFirstRepeatingElement(arr) {
-    let seen = {};
+  let seen = {};
 
-    for (let i = 0; i < arr.length; i++) {
-        if (seen[arr[i]] !== undefined) {
-            return arr[i];
-        }
-        seen[arr[i]] = i;
+  for (let i = 0; i < arr.length; i++) {
+    if (seen[arr[i]] !== undefined) {
+      return arr[i];
     }
+    seen[arr[i]] = i;
+  }
 
-    return null;
+  return null;
 }
 
-
-let arr = [1,2,3,4,1,5]
+let arr = [1, 2, 3, 4, 1, 5];
 
 console.log(findFirstRepeatingElement(arr));

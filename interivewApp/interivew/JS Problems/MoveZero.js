@@ -12,7 +12,6 @@ function moveZero(arr) {
   return arr;
 }
 
-console.log(moveZero([0, 1, 0, 3, 12]));
 
 function moveNegatives(arr) {
   let left = 0;

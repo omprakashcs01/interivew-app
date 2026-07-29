@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "698149809984",
+    "project_id": "rnnotifications-53476",
+    "storage_bucket": "rnnotifications-53476.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:698149809984:android:4b892a0726b4f66db094a5",
+        "android_client_info": {
+          "package_name": "com.interivewapp"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBNmTtPwRE0HTni-HoVmivu4EIYeMeyjkw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

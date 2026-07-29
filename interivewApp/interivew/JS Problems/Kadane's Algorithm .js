@@ -1,3 +1,25 @@
+//new GPT
+
+function maximumSubArray(arr) {
+  let csum = arr[0]; // Current subarray sum
+  let osum = arr[0]; // Overall maximum sum
+
+  
+  for (let i = 1; i < arr.length; i++) {
+    if (csum > 0) {
+      csum += arr[i];
+    } else {
+      csum = arr[i];
+    }
+
+    if (csum > osum) {
+      osum = csum;
+    }
+  }
+  return osum;
+}
+////////////////////////////////////////
+
 function subArray(arr) {
   let maxSum = arr[0];
 
@@ -39,25 +61,22 @@ console.log(maxSubArray(arr));
 
 //current
 
-arr = [5, 4, -1, 7, 8];
+arr = function maxSubArray(arr) {
+  let currentSum = arr[0];
+  let overallSum = arr[0];
 
-function maxSubArray(arr){
-
-    let currentSum = arr[0]
-    let overallSum= arr[0]
-
-    for(let i=1; i<arr.length; i++){
-        if(currentSum>0) {
-            currentSum  += arr[i]
-        } else {
-            currentSum = arr[i]
-        }
-
-        if(currentSum> overallSum){
-            overallSum =currentSum
-        }
+  for (let i = 1; i < arr.length; i++) {
+    if (currentSum > 0) {
+      currentSum += arr[i];
+    } else {
+      currentSum = arr[i];
     }
-    return overallSum
-}
+
+    if (currentSum > overallSum) {
+      overallSum = currentSum;
+    }
+  }
+  return overallSum;
+};
 
 console.log(maxSubArray(arr));

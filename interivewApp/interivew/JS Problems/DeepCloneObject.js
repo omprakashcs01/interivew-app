@@ -23,6 +23,28 @@ function deepClone(obj) {
   return clone;
 }
 
+//new
+
+const deepClone = obj => {
+  if (obj === null || typeof obj !== 'object') {
+    return obj;
+  }
+
+  let clone;
+
+  if (Array.isArray(obj)) {
+    clone = obj.map(item => deepClone(item)); // Using map for cleaner syntax
+  } else {
+    clone = {};
+
+    for (let key in obj) {
+      clone[key] = deepClone(obj[key]);
+    }
+  }
+
+  return clone;
+};
+
 // Example usage:
 const original = {
   a: 1,

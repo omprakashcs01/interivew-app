@@ -69,7 +69,7 @@ const Home = () => {
     <View>
       <TextInput
         style={styles.searchInput}
-        value={searchTerm}
+        ref={searchTerm}
         onChangeText={handleSearch}
         placeholder="Search by ID, Name, or Title"
       />

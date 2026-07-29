@@ -13,7 +13,7 @@ const sub = new Promise((resolve, reject) =>{
 sub.then((res)=>{
     console.log(res)
 })
-.catch((err)=>{ console.log(res)});
+
 
 //promiss
 

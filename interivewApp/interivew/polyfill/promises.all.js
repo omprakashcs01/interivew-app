@@ -23,40 +23,41 @@ Promise.myAll = promises => {
 
 ////////////////////////////////\
 // Create three promises that resolve after different durations
-const promise1 = new Promise(resolve => setTimeout(() => resolve('One'), 1000));
-const promise2 = new Promise(resolve => setTimeout(() => resolve('Two'), 2000));
-const promise3 = new Promise(reject =>
-  setTimeout(() => resolve('Three'), 3000),
-);
-
-// Use Promise.all to wait for all promises to resolve
-Promise.myAll([promise1, promise2, promise3])
-  .then(values => console.log(values)) // Logs: ['One', 'Two', 'Three']
-  .catch(error => console.error('RJECT ISSUE')); // Catches any errors if any promise rejects
-/////////////////////////////////////////////////////////////////////////////////////////////////
-
-const t1 = () => {
+////////////////////////////////////////
+Promise.allPolyfill = function (promises) {
   return new Promise((resolve, reject) => {
-    setTimeout(() => {
-      resolve('T1 success');
-    }, 500);
+    let result = [];
+    let pendingPromises = promises.length;
+
+    if (!pendingPromises) {
+      return resolve(result);
+    }
+
+    promises.forEach((promise, i) => {
+      Promise.resolve(promise)
+        .then(res => {
+          result[i] = res;
+          pendingPromises--;
+
+          if (pendingPromises === 0) {
+            resolve(result);
+          }
+        })
+        .catch(reject);
+    });
   });
 };
 
-const t2 = () => {
-  return new Promise((resolve, reject) => {
-    setTimeout(() => {
-      reject('T2 fail');
-    }, 500);
+const promise1 = Promise.resolve(1);
+const promise2 = new Promise(resolve => setTimeout(resolve, 100, 2));
+const promise3 = new Promise(resolve => setTimeout(resolve, 200, 3));
+// const promise4 = Promise.reject('Error in promise4');
+
+Promise.allPolyfill([promise1, promise2, promise3])
+  .then(results => {
+    console.log('All promises resolved:', results); // Expected output: All promises resolved: [1, 2, 3]
+  })
+  
+  .catch(error => {
+    console.log('One of the promises rejected:', error);
   });
-};
-
-const t3 = () => {
-  return new Promise((resolve, reject) => {
-    setTimeout(() => {
-      resolve('T3 success');
-    }, 500);
-  });
-};
-
-

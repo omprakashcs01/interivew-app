@@ -33,7 +33,7 @@ const SearchUI = ({value, onChangeText}) => {
               // backgroundColor: 'green',
             }}
             autoCapitalize="none"
-            value={value}
+            ref={value}
             onChangeText={onChangeText}
             placeholder="Search..."
           />

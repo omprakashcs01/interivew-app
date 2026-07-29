@@ -1,7 +1,7 @@
 import {Button, StyleSheet, Text, View} from 'react-native';
 import React, {useEffect, useState, useRef} from 'react';
 
-const PracticePage = () => {
+const PracticePageL = () => {
   const [seconds, setSeconds] = useState(0);
   const [minutes, setMinutes] = useState(0);
   const timer = useRef(null);

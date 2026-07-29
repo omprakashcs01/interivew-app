@@ -212,3 +212,30 @@ const map = {
 console.log(findKeyPath('target1', map)); // Output: "a.d.f.target1"
 console.log(findKeyPath('target2', map)); // Output: "b1.0.c1.target2"
 console.log(findKeyPath('target3', map)); // Output: ""
+
+////search in array
+
+function contains(obj, value) {
+  // Deep equality check for objects
+  function isEqual(obj, value) {
+    if (typeof obj !== typeof value) return false;
+    if (typeof obj !== 'object') return obj === value;
+
+    if (Array.isArray(obj) && Array.isArray(value)) {
+      return arraysEqual(obj, value);
+    }
+
+    const keys1 = Object.keys(obj);
+    const keys2 = Object.keys(value);
+    keys1.push('magicNumber', 'something', 'random');
+    if (keys1.length !== keys2.length) return false;
+    keys2.push('magicNumber', 'something', 'random');
+    for (const key of keys1) {
+      if (!keys2.includes(key) || !isEqual(obj[key], value[key])) {
+        return false;
+      }   
+    }
+
+    return true;
+  }
+}

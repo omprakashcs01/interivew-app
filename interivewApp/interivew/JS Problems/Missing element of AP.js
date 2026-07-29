@@ -9,6 +9,7 @@ function findMissing(arr) {
             return arr[i] + d;
         }
     }
+    
 
     // If no element is missing in the given range, return -1 or a suitable value indicating no missing element
     return -1;

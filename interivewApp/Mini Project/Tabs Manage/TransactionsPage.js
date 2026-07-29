@@ -40,6 +40,10 @@ const TransactionsPage = () => {
     return filteredData;
   };
 
+
+  const filtered=()=>{
+    
+  }
   return (
     <View>
       <View style={{flexDirection: 'row'}}>

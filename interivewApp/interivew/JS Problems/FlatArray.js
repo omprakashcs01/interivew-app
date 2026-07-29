@@ -1,5 +1,5 @@
 function flatArray(arr) {
-  const result = arr.reduce((acc, item) => {
+  return arr.reduce((acc, item) => {
     if (Array.isArray(item)) {
       const newFlatSubArray = flatArray(item);
       acc = acc.concat(newFlatSubArray);
@@ -8,11 +8,10 @@ function flatArray(arr) {
     }
     return acc;
   }, []);
-  return result;
 }
 
 console.log(
-  flatArray([1, 2, 3, [4, 5, 6], [7, 8, [9, 10, 11], 12], [13, 14, 15]],3)
+  flatArray([1, 2, 3, [4, 5, 6], [7, 8, [9, 10, 11], 12], [13, 14, 15]], 3),
 );
 
 /// with n
@@ -29,3 +28,5 @@ function flatArray(arr, n) {
   }, []);
   return result;
 }
+
+https://www.youtube.com/watch?v=s4e1kjKK-kc&t=728s

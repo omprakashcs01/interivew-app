@@ -13,30 +13,30 @@
 // Input: nums = [-1,1,0,-3,3]
 // Output: [0,0,9,0,0]
 
-function productExceptSelf(nums) {
+function productExceptSelf(arr) {
   const prefix = [];
 
-  for (let i = 0; i < nums.length; i++) {
+  for (let i = 0; i < arr.length; i++) {
     if (i === 0) {
       prefix[i] = 1;
     } else {
-      prefix[i] = nums[i - 1] * prefix[i - 1];
+      prefix[i] = arr[i - 1] * prefix[i - 1];
     }
   }
 
   const suffix = [];
 
-  for (let i = nums.length - 1; i >= 0; i--) {
-    if (i === nums.length - 1) {
+  for (let i = arr.length - 1; i >= 0; i--) {
+    if (i === arr.length - 1) {
       suffix[i] = 1;
     } else {
-      suffix[i] = nums[i + 1] * suffix[i + 1];
+      suffix[i] = arr[i + 1] * suffix[i + 1];
     }
   }
 
   const result = [];
 
-  for (let i = 0; i < nums.length; i++) {
+  for (let i = 0; i < arr.length; i++) {
     result[i] = prefix[i] * suffix[i];
   }
 

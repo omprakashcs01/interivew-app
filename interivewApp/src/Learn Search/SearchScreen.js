@@ -1,7 +1,7 @@
 import {FlatList, StyleSheet, Text, TextInput, View} from 'react-native';
 import React, {useEffect, useState} from 'react';
 import fetchData from './fetchData';
-import { debounce } from '../debounce fn/debounce';
+import {debounce} from '../debounce fn/debounce';
 
 // function debounce(func, wait) {
 //   let timeout;
@@ -47,9 +47,22 @@ const SearchScreen = () => {
     handleSearch();
   }, []);
 
-  
   const filteredData = filterSearch();
   console.log('API Calls Count:', apiCallsCount);
+
+  const debounce = (func, wait) => {
+    let timeout;
+
+    return function (...args) {
+      const context = this;
+
+      clearTimeout(timeout);
+
+      timeout = setTimeout(() => {
+        func.apply(context, args);
+      }, wait);
+    };
+  };
 
   const debouncedHandleSearch = useCallback(debounce(handleSearch, 300), []);
   return (
@@ -63,13 +76,17 @@ const SearchScreen = () => {
           paddingHorizontal: 10,
         }}
         placeholder="Search...."
-        value={searchTerm}
+        ref={searchTerm}
         onChangeText={text => {
           setSearchTerm(text);
           debouncedHandleSearch();
         }}
         // onSubmitEditing={debouncedHandleSearch}
       />
+
+      {/* const filteredData = data.filter(item => 
+    item.id.toString().includes(searchTerm)
+  ); */}
 
       <FlatList
         data={filteredData}

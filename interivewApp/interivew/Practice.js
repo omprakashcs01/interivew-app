@@ -1,8 +1,14 @@
-function longestConsecutive(arr){
-let count =1
-let max =1
+import {StyleSheet, Text, View} from 'react-native';
+import React from 'react';
 
-arr =arr.sort((a,b)=> a-b) 
+const Practice = () => {
+  return (
+    <View>
+      <Text>Practice</Text>
+    </View>
+  );
+};
 
+export default Practice;
 
-}
+const styles = StyleSheet.create({});
