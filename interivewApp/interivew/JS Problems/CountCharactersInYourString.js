@@ -82,3 +82,26 @@ function countDuplicateCharacters(str) {
 }
 
 console.log(countDuplicateCharacters('hello'));
+// single loop: 
+
+
+const countChar = (str) => {
+  const result = {};
+  const duplicate = {};
+
+  for (let i = 0; i < str.length; i++) {
+    const char = str[i];
+
+    if (result[char] >= 1) {
+      result[char] += 1;
+      duplicate[char] = result[char];
+    } else {
+      result[char] = 1;
+    }
+  }
+
+  return duplicate;
+};
+
+console.log(countChar("test"));
+// { t: 2 }
