@@ -52,3 +52,20 @@ let str3 = 'Rama';
 console.log(isPalindrome(str1));
 console.log(isPalindrome(str2));
 console.log(isPalindrome(str3));
+
+
+//two pointer 
+
+function isPalindrome(str) {
+  let left = 0;
+  let right = str.length - 1;
+
+  while (left < right) {
+    if (str[left] !== str[right]) return false;
+
+    left++;
+    right--;
+  }
+
+  return true;
+}

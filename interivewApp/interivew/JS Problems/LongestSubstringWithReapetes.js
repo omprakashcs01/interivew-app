@@ -23,3 +23,5 @@ function longestSubstring(str){
   }    
   return longestSubstring
 }
+
+https://www.youtube.com/watch?v=i1edO6FkGm0
