@@ -58,3 +58,27 @@ all(promises)
 ////////////////////////////////////////////
 
 
+
+const all = promises => {
+  return new Promise((resolve, reject) => {
+    const results = [];
+    let count = 0;
+
+    for (let i = 0; i < promises.length; i++) {
+      Promise.resolve(promises[i])
+        .then(res => {
+          results[i] = res;
+          count++;
+
+          if (count === promises.length) {
+            resolve(results);
+          }
+        })
+        .catch(reject);
+    }
+
+    if (promises.length === 0) {
+      resolve([]);
+    }
+  });
+};

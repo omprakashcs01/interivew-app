@@ -61,3 +61,16 @@ function compose(...args) {
     return args.reduceRight((acc, curr) => curr(acc), init);
   };
 }
+
+
+
+///pipe
+const add2 = x => x + 2;
+const multiply3 = x => x * 3;
+
+const pipe = (...fns) =>
+  val =>
+    fns.reduce((acc, curr) => curr(acc), val);
+
+console.log(pipe(add2, multiply3)(5));
+// 21

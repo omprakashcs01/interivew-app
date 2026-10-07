@@ -11,6 +11,30 @@ function twoSum(arr, target) {
 console.log(twoSum([1, 2, 3, 4, 5], 9)); // Output: [3, 4]
 //O(N^2)
 
+
+
+const twoSum = (arr, target) => {
+  const map = new Map();
+
+  for (let i = 0; i < arr.length; i++) {
+    const need = target - arr[i];
+
+    if (map.has(need)) {
+      return [map.get(need), i];
+    }
+
+    map.set(arr[i], i);
+  }
+};
+
+
+
+
+
+
+
+
+
 //optimized solution
 //hashmap
 // input  =[1,5,9]

@@ -89,3 +89,128 @@ const styles = StyleSheet.create({
 });
 
 export default Typeahead;
+
+
+
+///new 
+import {
+  Text,
+  View,
+  TextInput,
+  FlatList,
+  TouchableOpacity,
+} from 'react-native';
+
+import React, { useState, useEffect, useMemo } from 'react';
+
+// const MOCK  =[
+//   {id: 1, name: "apple"},
+//   {id:2, name: "banana"},
+//   {id:3, name:  papaya},
+//   {id: 4, name: graps}
+// ]
+
+
+const debounce = (fn, dealy)=>{
+  let timer 
+     
+  return (...args)=>{
+    clearTimeout(timer)
+    timer= setTimeout(()=>{
+      fn.apply(this, args)
+    },dealy)
+  }
+}
+
+const TypeHeadSearch = () => {
+  const [query, setQurey] = useState('');
+  const [data, setData] = useState([]);
+  const [showSuggestions, setShowSuggestions] = useState(true);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState('');
+
+  const [searchQuery, setSearchQuery] = useState('');
+
+  useEffect(() => {
+    fetchData();
+  }, []);
+
+  
+ const debounceSearch = useMemo(
+  () =>
+    debounce(text => {
+      setSearchQuery(text);
+    }, 500),
+  [],
+);
+
+  const fetchData = async () => {
+    try {
+      setLoading(true);
+      setError('');
+      let response = await fetch('https://jsonplaceholder.typicode.com/posts');
+
+      if (!response.ok) {
+        throw new Error('Failed to fetch data');
+      }
+      let newData = await response.json();
+      setData(newData);
+    } catch (err) {
+      setError('Something went wrong');
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const handleSearch = (text) => {
+    setQurey(text);
+    setShowSuggestions(true);
+    debounceSearch(text)
+   
+  };
+
+  const filterData =
+    searchQuery.trim().length > 0
+      ? data.filter((item) => {
+          return item.title.toLowerCase().includes(searchQuery.toLowerCase());
+        })
+      : [];
+
+  const handleSelect = (item) => {
+    setQurey(item.title);
+    setShowSuggestions(false);
+  };
+
+  return (
+    <View>
+      <TextInput
+        style={{ borderWidth: 1, padding: 10, margin: 20 }}
+        value={query}
+        onChangeText={handleSearch}
+        placeholder="search...."
+      />
+      {searchQuery.trim().length > 0 &&
+        showSuggestions &&
+        filterData.length === 0 && <Text> no result</Text>}
+      {loading && <Text>Loading...</Text>}
+
+      {error.length > 0 && <Text>{error}</Text>}
+      <FlatList
+        data={showSuggestions ? filterData : []}
+        renderItem={({ item }) => {
+          return (
+            <View>
+              <TouchableOpacity onPress={() => handleSelect(item)}>
+                <Text>{item.title}</Text>
+              </TouchableOpacity>
+            </View>
+          );
+        }}
+        keyExtractor={(item) => item.id.toString()}
+      />
+    </View>
+  );
+};
+
+export default TypeHeadSearch;
+
