@@ -39,3 +39,13 @@ user2.name = "Alex";
 
 console.log(user1.name); // Alex
 console.log(user2.name); // Alex
+
+
+//Important interview question: Object comparison
+const a = { name: "John" };
+const b = { name: "John" };
+const c = a;
+
+console.log(a === b); // false
+console.log(a === c); // true
+//Even though a and b contain identical properties, they are different objects.
