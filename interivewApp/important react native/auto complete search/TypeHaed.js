@@ -214,3 +214,100 @@ const TypeHeadSearch = () => {
 
 export default TypeHeadSearch;
 
+
+//new 
+
+import React, { useState, useEffect } from 'react';
+import { Text, View, StyleSheet, TextInput, FlatList , ActivityIndicator, TouchableOpacity} from 'react-native';
+
+
+
+const TypeHead = () => {
+  const [query, setQuery] = useState('');
+  const [data, setData] = useState([]);
+  const [error, setError] = useState('');
+  const [loading ,setLoading] = useState(false);
+  const [searchQurey,setSearchQuery] = useState('')
+
+  useEffect(() => {
+    fetchData();
+  }, []);
+
+
+ useEffect(()=>{
+      const timer = setTimeout(()=>{
+        setSearchQuery(query)
+      },300)
+      return ()=>{
+        clearTimeout(timer)
+      }
+ },[query])
+
+  const fetchData = async () => {
+    setLoading(true)
+    setError('');
+    try {
+      let response = await fetch('https://jsonplaceholder.typicode.com/posts');
+      if (!response.ok) {
+        throw new Error('API ERROR');
+      }
+      let newData = await response.json();
+      setData(newData);
+       
+    } catch (err) {
+     setError(err.message);
+    }finally{
+        setLoading(false)
+    }
+
+  };
+
+  const hndleSearch = (text) => {
+    setQuery(text);
+  };
+
+  const handleList = ({ item }) => {
+    return (
+      <View style ={{flex:1 , padding: 10, borderWidth: 1, margin: 10}}>
+        <Text>{item.title}</Text>
+      </View>
+    );
+  };
+
+     const filterSearch = 
+  searchQurey.trim()? data.filter((item)=>{
+  return item.title.toLowerCase().includes(searchQurey.toLowerCase())
+  }):[]
+
+
+  return (
+    <View>
+      <Text> test </Text>
+      <TextInput
+        style={{ borderWidth: 1, padding: 10, margin: 15 }}
+        value={query}
+        onChangeText={hndleSearch}
+        placeholder="Search....."
+      />
+      {loading&& <ActivityIndicator size = "small"/>}
+      {error? <Text>{error}</Text>: null}
+
+      {query.trim() !== ''&&  query === searchQurey && ( <FlatList
+        data={filterSearch}
+        keyExtractor={(item) => item.id.toString()}
+        renderItem={handleList}
+        ListEmptyComponent={
+  !loading && !error ? <Text>No results found</Text> : null
+}
+      
+        
+
+      />)}
+     
+    </View>
+  );
+};
+
+export default TypeHead;
+
+
