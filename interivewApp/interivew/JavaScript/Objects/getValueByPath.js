@@ -24,3 +24,10 @@ const data = {
 console.log(getValueByPath(data, "user.address.city")); // Delhi
 console.log(getValueByPath(data, "user.name")); // John
 console.log(getValueByPath(data, "user.age")); // undefined
+
+//short
+const getValue = (obj, path) => {
+  return path.split(".").reduce((acc, key) => {
+    return acc?.[key];
+  }, obj);
+};
