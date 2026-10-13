@@ -1,3 +1,47 @@
+function sumNestedObject(obj) {
+  let sum = 0;
+
+  for (let value of Object.values(obj)) {
+    if (typeof value === "number") {
+      sum += value;
+    } else if (value !== null && typeof value === "object") {
+      sum += sumNestedObject(value);
+    }
+  }
+
+  return sum;
+}
+
+const data = {
+  a: 1,
+  b: { c: 2, d: { e: 3 } },
+  f: [4, 5]
+};
+
+console.log(sumNestedObject(data)); // 15
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 function sumNestedObject(obj) {
   let sum = 0;
