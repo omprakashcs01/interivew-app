@@ -311,3 +311,121 @@ const TypeHead = () => {
 export default TypeHead;
 
 
+
+/// search with multi select and debounce
+
+
+import React, { useState, useEffect } from 'react';
+
+import {
+  Text,
+  View,
+  StyleSheet,
+  TextInput,
+  FlatList,
+  TouchableOpacity,
+} from 'react-native';
+
+const TypeHaed = () => {
+  const [query, setQuuery] = useState('');
+  const [data, setData] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState('');
+  const [searchQuery, setSearchQuery] = useState('');
+  const [selectedItem, setSelectedItem] = useState([]);
+
+  useEffect(() => {
+    fetchData();
+  }, []);
+
+  useEffect(() => {
+    let timer = setTimeout(() => {
+      setSearchQuery(query);
+    }, 300);
+
+    return () => clearTimeout(timer);
+  }, [query]);
+
+  const handleSearch = (text) => {
+    setQuuery(text);
+  };
+
+  const fetchData = async () => {
+    setLoading(true);
+    setError('');
+
+    try {
+      let response = await fetch('https://jsonplaceholder.typicode.com/posts');
+      if (!response.ok) {
+        throw new Error('API error');
+      }
+      let newData = await response.json();
+      setData(newData);
+    } catch (err) {
+      setError(err.message);
+    } finally {
+      setLoading(false);
+    }
+  };
+//mutlti select
+  const handleList = ( item ) => {
+    setSelectedItem((prevSelected) => {
+      return prevSelected.includes(item.id)
+        ? prevSelected.filter((i) => i != item.id)
+        : [...prevSelected, item.id];
+    });
+  };
+
+  const renderList = ({ item }) => {
+    return (
+      <View style ={{flex: 1}}>
+        <View>
+          <TouchableOpacity
+            onPress={()=> handleList(item)}
+            style={{
+               flex: 1, borderWidth: 1, margin: 10, padding: 10,
+              backgroundColor: selectedItem.includes(item.id)
+                ? 'lightblue'
+                : 'white',
+                
+            }}>
+            <Text> {item.title} </Text>
+          </TouchableOpacity>
+        </View>
+      </View>
+    );
+  };
+  //query.trim().length>0?
+
+  const filterSearch =
+    searchQuery.trim().length > 0
+      ? data.filter((item) => {
+          return item.title
+            .toLowerCase()
+            .includes(searchQuery.toLowerCase().trim());
+        })
+      : [];
+
+  return (
+    <View style ={{flex: 1}}>
+      <Text> Search list </Text>
+      <TextInput
+        style={{ borderWidth: 1, padding: 10, margin: 10, borderRadius: 10 }}
+        value={query}
+        onChangeText={handleSearch}
+        placeholder="Search...."
+      />
+      <Text>Selected Items: {selectedItem.length}</Text>
+      <FlatList
+        data={filterSearch}
+        keyExtractor={(item) => item.id.toString()}
+        renderItem={renderList}
+      />
+    </View>
+  );
+};
+
+export default TypeHaed;
+
+
+
