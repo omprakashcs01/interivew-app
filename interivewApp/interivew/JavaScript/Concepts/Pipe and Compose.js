@@ -74,3 +74,41 @@ const pipe = (...fns) =>
 
 console.log(pipe(add2, multiply3)(5));
 // 21
+
+//final: . Best version for interviews (Recommended)
+
+
+// function compose(...fns) {
+//   return function (value) {
+//     return fns.reduceRight((acc, fn) => fn(acc), value);
+//   };
+// }
+
+
+ function compose(...fns) {
+    return function (value) {
+     return   fns.reduceRight((acc, item) => {
+            return item(acc)
+        },value)
+    }
+}
+
+
+const add2 = x => x + 2;
+const subtract1 = x => x - 1;
+const multiply5 = x => x * 5;
+
+const result = compose(multiply5, subtract1, add2);
+
+console.log(result(5)); // 30
+
+//Pipe (also important)
+
+function pipe(...fns) {
+  return function (value) {
+    return fns.reduce((acc, fn) => fn(acc), value);
+  };
+}
+
+console.log(pipe(add2, subtract1, multiply5)(5)); // 30
+r

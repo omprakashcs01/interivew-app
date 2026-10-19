@@ -17,10 +17,10 @@ const twoSum = (arr, target) => {
   const map = new Map();
 
   for (let i = 0; i < arr.length; i++) {
-    const need = target - arr[i];
+    const diff = target - arr[i];
 
-    if (map.has(need)) {
-      return [map.get(need), i];
+    if (map.has(diff)) {
+      return [map.get(diff), i];
     }
 
     map.set(arr[i], i);

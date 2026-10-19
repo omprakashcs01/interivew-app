@@ -14,6 +14,33 @@ function countCharter(string) {
 
 console.log(countCharter('my name'));
 
+
+
+
+//2. Best solution to remember for interviews
+//You can use one simple approach for both arrays and strings.
+
+function countChar(arr) {
+  const result = {};
+
+  for (let i = 0; i < arr.length; i++) {
+    const item = arr[i];
+    result[item] = (result[item] || 0) + 1;
+  }
+
+  return result;
+}
+
+console.log(countChar([1, 2, 1, 5, 3, 5, 2, 8, 4]));
+// { 1: 2, 2: 2, 3: 1, 4: 1, 5: 2, 8: 1 }
+
+console.log(countChar("my name"));
+// { m: 2, y: 1, " ": 1, n: 1, a: 1, e: 1 }
+
+
+
+
+
 //   function countCharter (string) {
 //     var result = {};
 

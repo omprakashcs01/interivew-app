@@ -78,7 +78,7 @@ const OTPScreen = () => {
             maxLength={1}
             keyboardType="number-pad"
             autoFocus={index === 0}
-            ref={ref => {
+            useRef={ref => {
               inputs.current[index] = ref;
             }}
             onChangeText={value => handleOTP(value, index)}
