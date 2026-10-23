@@ -62,3 +62,47 @@ lruCache.display();
 // map.set(1, 'a');
 // map.set(2, 'b');
 // console.log(map)
+
+//Simplified interview version
+
+
+
+class LRUCache {
+  constructor(limit = 10) {
+    this.limit = limit;
+    this.map = new Map();
+  }
+
+  put(key, value) {
+    if (this.map.has(key)) {
+      this.map.delete(key);
+    } else if (this.map.size >= this.limit) {
+      let oldest = this.map.keys().next().value;
+      this.map.delete(oldest);
+    }
+
+    this.map.set(key, value);
+  }
+
+  get(key) {
+    if (!this.map.has(key)) return -1;
+
+    let value = this.map.get(key);
+
+    this.map.delete(key);
+    this.map.set(key, value);
+
+    return value;
+  }
+}
+
+const lru = new LRUCache(2);
+
+lru.put(1, "A");
+lru.put(2, "B");
+
+console.log(lru.get(1)); // A
+
+lru.put(3, "C");
+
+console.log(lru.get(2)); // -1
